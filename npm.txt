@@ -19,3 +19,10 @@ note:
 # we can install packages as local dependencies(that means we can only use it in the current project by just writting npm i 'package name') or as a global dependencies(which means we can use it in any in our project by just writting npm i -g 'package name')
 # we need to create package.json because it help store our packages. we create it by running 'npm init -y
 # package.json helps provide information about our packages
+
+package.json
+
+note:
+# in package.json dependency are the required package needed fro an application to run while devdependencies are the package which are only required in production process and not really required fro the project to run, so to install devdepencies we write "npm install 'package name' -D"
+# the script in package.json determines with "start" the file that is run when we write npm start
+# 
