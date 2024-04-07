@@ -1,0 +1,21 @@
+we have two type of module:
+
+# our own module
+# built in module
+
+the npm which is automatically installed with node allow to:
+
+# reuse our own code in other projects
+# use code written by other developers
+# share our own solutions with other developers 
+
+
+note:
+# npm call the reusable code a package(we also call modules/dependencies)
+# there is no quality control in npm registry i.e. anyone can publish anything
+# the amount of weekly download is what determines a useful and secure package
+# if you wanna get some packages, just go to npmjs.com to get them
+# you can check the npm version by running npm --version in your terminal
+# we can install packages as local dependencies(that means we can only use it in the current project by just writting npm i 'package name') or as a global dependencies(which means we can use it in any in our project by just writting npm i -g 'package name')
+# we need to create package.json because it help store our packages. we create it by running 'npm init -y
+# package.json helps provide information about our packages
