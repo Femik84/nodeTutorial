@@ -1,11 +1,13 @@
+// just like in frontend router help us to arrange our routes accordingly without making our file rough
+
 const express = require('express')
 const app = express()
 
-const people = require('./routes/people')
-const auth = require('./routes/auth')
+const people = require('./13-router-people')
+const auth = require('./14-router-auth')
 
 // static assets
-app.use(express.static('./methods-public'))
+app.use(express.static('../methods-public'))
 // parse form data
 app.use(express.urlencoded({ extended: false }))
 // parse json

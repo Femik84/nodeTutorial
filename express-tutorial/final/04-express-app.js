@@ -4,11 +4,12 @@ const path = require('path')
 const app = express()
 
 // setup static and middleware
-app.use(express.static('./public'))
+// the express.static handles all static file in the the folder provided if we want to do something dynsmic we have to involve the template strings
+app.use(express.static('../navbar-app'))
 
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './navbar-app/index.html'))
-})
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../navbar-app/index.html'))
+// })
 
 app.all('*', (req, res) => {
   res.status(404).send('resource not found')

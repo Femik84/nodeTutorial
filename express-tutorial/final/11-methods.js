@@ -1,37 +1,17 @@
+// handling all http methods is what is done in this session
+// and we use postman a javascript.html to handle calling the methods and we are not building frontend
+
+
 const express = require('express')
 const app = express()
-let { people } = require('./data')
+let { people } = require('../data')
 
 // static assets
-app.use(express.static('./methods-public'))
+app.use(express.static('../methods-public'))
 // parse form data
 app.use(express.urlencoded({ extended: false }))
 // parse json
 app.use(express.json())
-
-app.get('/api/people', (req, res) => {
-  res.status(200).json({ success: true, data: people })
-})
-
-app.post('/api/people', (req, res) => {
-  const { name } = req.body
-  if (!name) {
-    return res
-      .status(400)
-      .json({ success: false, msg: 'please provide name value' })
-  }
-  res.status(201).json({ success: true, person: name })
-})
-
-app.post('/api/postman/people', (req, res) => {
-  const { name } = req.body
-  if (!name) {
-    return res
-      .status(400)
-      .json({ success: false, msg: 'please provide name value' })
-  }
-  res.status(201).json({ success: true, data: [...people, name] })
-})
 
 app.post('/login', (req, res) => {
   const { name } = req.body
@@ -41,6 +21,32 @@ app.post('/login', (req, res) => {
 
   res.status(401).send('Please Provide Credentials')
 })
+
+app.get('/api/people', (req, res) => {
+  res.status(200).json({ success: true, data: people })
+})
+
+app.post('/api/people', (req, res) => {
+  const { name } = req.body
+  // that req.body above means if the name is not provided, there will be 400 error
+  if (!name) {
+    return res
+      .status(400)
+      .json({ success: false, msg: 'please provide name value' })
+  }
+  res.status(201).json({ success: true, person: name })
+})
+
+app.post('/api/people/postman', (req, res) => {
+  const { name } = req.body
+  if (!name) {
+    return res
+      .status(400)
+      .json({ success: false, msg: 'please provide name value' })
+  }
+  res.status(201).json({ success: true, data: [...people, name] })
+})
+
 
 app.put('/api/people/:id', (req, res) => {
   const { id } = req.params
@@ -61,6 +67,7 @@ app.put('/api/people/:id', (req, res) => {
   })
   res.status(200).json({ success: true, data: newPeople })
 })
+
 
 app.delete('/api/people/:id', (req, res) => {
   const person = people.find((person) => person.id === Number(req.params.id))

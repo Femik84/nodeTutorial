@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
-const logger = require('./logger')
-const authorize = require('./authorize')
+const logger = require('../logger')
+const authorise = require('../authorise')
 //  req => middleware => res
+// app.use is use to call middlewre function
 
 // app.use([logger, authorize])
 // app.use(express.static('./public'))
@@ -19,7 +20,6 @@ app.get('/api/products', (req, res) => {
   res.send('Products')
 })
 app.get('/api/items', (req, res) => {
-  console.log(req.user)
   res.send('Items')
 })
 

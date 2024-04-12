@@ -1,6 +1,9 @@
+// we can send data using the route parameters or the url parameters.. 
+
+// route parameters
 const express = require('express')
 const app = express()
-const { products } = require('./data')
+const { products } = require('../data')
 
 app.get('/', (req, res) => {
   res.send('<h1> Home Page</h1><a href="/api/products">products</a>')
@@ -28,10 +31,14 @@ app.get('/api/products/:productID', (req, res) => {
   return res.json(singleProduct)
 })
 
+
+
 app.get('/api/products/:productID/reviews/:reviewID', (req, res) => {
   console.log(req.params)
   res.send('hello world')
 })
+
+// url parameters
 
 app.get('/api/v1/query', (req, res) => {
   // console.log(req.query)
@@ -51,6 +58,12 @@ app.get('/api/v1/query', (req, res) => {
     return res.status(200).json({ sucess: true, data: [] })
   }
   res.status(200).json(sortedProducts)
+
+  // always tend to use 'return' when sending data with res.json to avoid the computer getting confuse especially when you have many data to send based on the if statement
+
+  // http://localhost:5000/api/v1/query?limit=3&search=entertainment
+  // thats how the url wil look like using url parameters
+  
 })
 
 app.listen(5000, () => {
